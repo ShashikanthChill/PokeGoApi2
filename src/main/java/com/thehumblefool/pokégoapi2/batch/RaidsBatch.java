@@ -111,7 +111,7 @@ public class RaidsBatch {
     public DelimitedLineTokenizer raidTokenizer() {
         DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer(",");
         tokenizer.setStrict(false);
-        tokenizer.setNames("poké_dex", "pokémon", "type_1", "type_2", "tier", "gen", "raid_cp", "min_cp_non_boosted", "max_cp_non_boosted", "min_cp_boosted", "max_cp_boosted", "group_size_difficulty", "shiny_available");
+        tokenizer.setNames("poké_dex", "pokémon", "type_1", "type_2", "tier", "gen", "raid_cp", "min_cp_non_boosted", "max_cp_non_boosted", "min_cp_boosted", "max_cp_boosted", "recommended_group_size", "shiny_available");
         return tokenizer;
     }
 
@@ -136,7 +136,7 @@ public class RaidsBatch {
     public JdbcBatchItemWriter<RaidEntityModel> raidItemWriter() {
         return new JdbcBatchItemWriterBuilder<RaidEntityModel>()
                 .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-                .sql("INSERT INTO raids_list (poké_dex,pokémon,type_1,type_2,tier,gen,raid_cp,min_cp_non_boosted,max_cp_non_boosted,min_cp_boosted,max_cp_boosted,group_size_difficulty,shiny_available) VALUES (:pokéDex, :pokémon, :type1, :type2, :tier, :gen, :raidCp, :minCpNonBoosted, :maxCpNonBoosted, :minCpBoosted, :maxCpBoosted, :groupSizeDifficulty, :shinyAvailable)")
+                .sql("INSERT INTO raids_list (poké_dex,pokémon,type_1,type_2,tier,gen,raid_cp,min_cp_non_boosted,max_cp_non_boosted,min_cp_boosted,max_cp_boosted,recommended_group_size,shiny_available) VALUES (:pokéDex, :pokémon, :type1, :type2, :tier, :gen, :raidCp, :minCpNonBoosted, :maxCpNonBoosted, :minCpBoosted, :maxCpBoosted, :recommendedGroupSize, :shinyAvailable)")
                 .dataSource(dataSource)
                 .build();
     }

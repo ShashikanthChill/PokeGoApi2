@@ -74,9 +74,6 @@ public class EncountersBatch {
     public FlatFileItemReader<ResearchBreakthroughEncounterEntityModel> encounterItemReader(@Value(value = "#{jobParameters['fileName']}") String fileName,
             @Autowired @Qualifier(value = "encounterLineMapper") LineMapper<ResearchBreakthroughEncounterEntityModel> lineMapper) throws IOException {
         byte[] csvFile = s3Service.getCsvFile(getBatchFilesBucketName(), fileName);
-        for (byte b : csvFile) {
-            System.out.print((char) b);
-        }
         return new FlatFileItemReaderBuilder<ResearchBreakthroughEncounterEntityModel>()
                 .name("encounter-reader")
                 .resource(new ByteArrayResource(csvFile))
@@ -85,10 +82,10 @@ public class EncountersBatch {
                 .build();
     }
 
-    @Bean(name = "encounterLineMappper")
+    @Bean(name = "encounterLineMapper")
     @StepScope
-    public LineMapper<ResearchBreakthroughEncounterEntityModel> encounterLineMappper(@Autowired @Qualifier(value = "encounterFieldSetMapper") FieldSetMapper<ResearchBreakthroughEncounterEntityModel> fieldSetMapper,
-            @Autowired @Qualifier(value = "encouterTokenizer") DelimitedLineTokenizer tokenizer) {
+    public LineMapper<ResearchBreakthroughEncounterEntityModel> encounterLineMapper(@Autowired @Qualifier(value = "encounterFieldSetMapper") FieldSetMapper<ResearchBreakthroughEncounterEntityModel> fieldSetMapper,
+            @Autowired @Qualifier(value = "encounterTokenizer") DelimitedLineTokenizer tokenizer) {
         DefaultLineMapper<ResearchBreakthroughEncounterEntityModel> lineMapper = new DefaultLineMapper<>();
         lineMapper.setLineTokenizer(tokenizer);
         lineMapper.setFieldSetMapper(fieldSetMapper);
@@ -105,11 +102,12 @@ public class EncountersBatch {
         };
     }
 
-    @Bean
+    @Bean(name = "encounterTokenizer")
+    @StepScope
     public DelimitedLineTokenizer encounterTokenizer() {
         DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer(",");
         tokenizer.setStrict(false);
-        tokenizer.setNames("pokédex", "pokémon", "type_1", "type_2", "min_cp", "max_cp", "shiny_available");
+        tokenizer.setNames("poké_dex", "pokémon", "type_1", "type_2", "min_cp", "max_cp", "shiny_available");
         return tokenizer;
     }
 
@@ -117,7 +115,7 @@ public class EncountersBatch {
     @StepScope
     public ItemProcessor<ResearchBreakthroughEncounterEntityModel, ResearchBreakthroughEncounterEntityModel> encounterItemProcessor() {
         return (t) -> {
-            System.out.println("Processing pokémon: " + t.getPokémon());
+            //todo processing
             return t;
         };
     }
@@ -134,7 +132,7 @@ public class EncountersBatch {
     public JdbcBatchItemWriter<ResearchBreakthroughEncounterEntityModel> encounterItemWriter() {
         return new JdbcBatchItemWriterBuilder<ResearchBreakthroughEncounterEntityModel>()
                 .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-                .sql("INSERT INTO encounters_batch (pokédex,pokémon,type_1,type_2,min_cp,max_cp,shiny_available) VALUES (:pokéDex, :pokémon, :type1, :type2, :minCp, :maxCp, :shinyAvailable)")
+                .sql("INSERT INTO encounters_list (poké_dex,pokémon,type_1,type_2,min_cp,max_cp,shiny_available) VALUES (:pokéDex, :pokémon, :type1, :type2, :minCp, :maxCp, :shinyAvailable)")
                 .dataSource(dataSource)
                 .build();
     }

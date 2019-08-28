@@ -71,12 +71,9 @@ public class EggHatchesBatch {
 
     @Bean(name = "eggHatchItemReader")
     @StepScope
-    public FlatFileItemReader<EggHatchEntityModel> eggHatchItemReader(@Value(value = "#{jobParameters['fileName']}") String fileName, 
+    public FlatFileItemReader<EggHatchEntityModel> eggHatchItemReader(@Value(value = "#{jobParameters['fileName']}") String fileName,
             @Autowired @Qualifier(value = "eggHatchLineMapper") LineMapper<EggHatchEntityModel> lineMapper) throws IOException {
         byte[] csvFile = s3Service.getCsvFile(getBatchFilesBucketName(), fileName);
-        for (byte b : csvFile) {
-            System.out.print((char) b);
-        }
         return new FlatFileItemReaderBuilder<EggHatchEntityModel>()
                 .name("egg-hatch-reader")
                 .resource(new ByteArrayResource(csvFile))
@@ -87,7 +84,7 @@ public class EggHatchesBatch {
 
     @Bean(name = "eggHatchLineMapper")
     @StepScope
-    public LineMapper<EggHatchEntityModel> eggHatchLineMappper(@Autowired @Qualifier(value = "eggHatchFieldSetMapper") FieldSetMapper<EggHatchEntityModel> fieldSetMapper, 
+    public LineMapper<EggHatchEntityModel> eggHatchLineMappper(@Autowired @Qualifier(value = "eggHatchFieldSetMapper") FieldSetMapper<EggHatchEntityModel> fieldSetMapper,
             @Autowired @Qualifier(value = "eggHatchTokenizer") DelimitedLineTokenizer tokenizer) {
         DefaultLineMapper<EggHatchEntityModel> lineMapper = new DefaultLineMapper<>();
         lineMapper.setLineTokenizer(tokenizer);
@@ -110,7 +107,7 @@ public class EggHatchesBatch {
     public DelimitedLineTokenizer eggHatchTokenizer() {
         DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer(",");
         tokenizer.setStrict(false);
-        tokenizer.setNames("pokédex", "pokémon", "type_1", "type_2", "hatch_distance", "min_cp", "max_cp", "shiny_available");
+        tokenizer.setNames("poké_dex", "pokémon", "type_1", "type_2", "hatch_distance", "min_cp", "max_cp", "shiny_available");
         return tokenizer;
     }
 
@@ -118,7 +115,7 @@ public class EggHatchesBatch {
     @StepScope
     public ItemProcessor<EggHatchEntityModel, EggHatchEntityModel> eggHatchItemProcessor() {
         return (t) -> {
-            System.out.println("Processing pokémon: " + t.getPokémon());
+            //todo processing
             return t;
         };
     }
@@ -135,13 +132,13 @@ public class EggHatchesBatch {
     public JdbcBatchItemWriter<EggHatchEntityModel> eggHatchItemWriter() {
         return new JdbcBatchItemWriterBuilder<EggHatchEntityModel>()
                 .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-                .sql("INSERT INTO egg_hatch_list (poké_dex,pokémon,type_1,type_2,hatch_distance,min_cp,max_cp,shiny_available) VALUES (:pokéDex, :pokémon, :type1, :type2, :hatchDistance, :minCp, :maxCp, :shinyAvailable)")
+                .sql("INSERT INTO egg_hatches_list (poké_dex,pokémon,type_1,type_2,hatch_distance,min_cp,max_cp,shiny_available) VALUES (:pokéDex, :pokémon, :type1, :type2, :hatchDistance, :minCp, :maxCp, :shinyAvailable)")
                 .dataSource(dataSource)
                 .build();
     }
 
     @Bean(name = "eggHatchesBatchJob")
-    public Job eggHatchesJob(@Autowired @Qualifier(value = "eggHatchJobStep") Step step, 
+    public Job eggHatchesJob(@Autowired @Qualifier(value = "eggHatchJobStep") Step step,
             @Autowired JobExecutionListener listener) throws Exception {
         return jobBuilderFactory.get("egg-hatches-job")
                 .incrementer(new RunIdIncrementer())
@@ -152,8 +149,8 @@ public class EggHatchesBatch {
     }
 
     @Bean(name = "eggHatchJobStep")
-    public Step eggHatchJobStep(@Autowired @Qualifier(value = "eggHatchItemReader") ItemReader<EggHatchEntityModel> reader, 
-            @Autowired @Qualifier(value = "eggHatchItemProcessor") ItemProcessor<EggHatchEntityModel, EggHatchEntityModel> processor, 
+    public Step eggHatchJobStep(@Autowired @Qualifier(value = "eggHatchItemReader") ItemReader<EggHatchEntityModel> reader,
+            @Autowired @Qualifier(value = "eggHatchItemProcessor") ItemProcessor<EggHatchEntityModel, EggHatchEntityModel> processor,
             @Autowired @Qualifier(value = "eggHatchItemWriter") ItemWriter<EggHatchEntityModel> writer) throws IOException, Exception {
         return stepBuilderFactory.get("step1")
                 .<EggHatchEntityModel, EggHatchEntityModel>chunk(25)
