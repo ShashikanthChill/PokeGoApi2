@@ -46,7 +46,7 @@ public class TypeEffectivenessPublicService {
     }
 
     private void loadAllTypeEffectives(List<TypeEffectivenessDTOModel> typeEffectivenessDTOModels) {
-        jdbcTemplate.query("select * from type_effectiveness", (ResultSet rs, int rowNum) -> {
+        jdbcTemplate.query("select * from type_effectiveness_list", (ResultSet rs, int rowNum) -> {
             ResultSetMetaData metaData = rs.getMetaData();
             rs.beforeFirst();
             while (rs.next()) {
@@ -68,14 +68,13 @@ public class TypeEffectivenessPublicService {
                 }
                 TypeEffectivenessDTOModel typeEffectivenessDTOModel = new TypeEffectivenessDTOModel(rs.getString(2), superEffective, normalEffective, notVeryEffective, noEffective);
                 typeEffectivenessDTOModels.add(typeEffectivenessDTOModel);
-                typeEffectivenessDTOModels.add(typeEffectivenessDTOModel);
             }
             return null;
         });
     }
 
     private void loadTypeEffectivesByType(List<TypeEffectivenessDTOModel> typeEffectivenessDTOModels, String type) {
-        jdbcTemplate.query("select * from type_effectiveness where type='" + type + "'", (ResultSet rs, int rowNum) -> {
+        jdbcTemplate.query("select * from type_effectiveness_list where type='" + type + "'", (ResultSet rs, int rowNum) -> {
             ResultSetMetaData metaData = rs.getMetaData();
             rs.beforeFirst();
             while (rs.next()) {
