@@ -1,0 +1,79 @@
+CREATE TABLE `egg_hatch_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `poké_dex` int(11) NOT NULL,
+  `pokémon` varchar(45) NOT NULL,
+  `type_1` varchar(45) NOT NULL,
+  `type_2` varchar(45) DEFAULT NULL,
+  `hatch_distance` int(11) NOT NULL,
+  `min_cp` int(11) NOT NULL,
+  `max_cp` int(11) NOT NULL,
+  `shiny_available` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+)
+
+CREATE TABLE `encounters_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `poké_dex` int(11) NOT NULL,
+  `pokémon` varchar(45) NOT NULL,
+  `type_1` varchar(45) NOT NULL,
+  `type_2` varchar(45) DEFAULT NULL,
+  `min_cp` int(11) NOT NULL,
+  `max_cp` int(11) NOT NULL,
+  `shiny_available` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `poké_dex_UNIQUE` (`poké_dex`),
+  UNIQUE KEY `pokémon_UNIQUE` (`pokémon`)
+)
+
+CREATE TABLE `raids_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `poké_dex` int(11) NOT NULL,
+  `pokémon` varchar(45) NOT NULL,
+  `type_1` varchar(45) NOT NULL,
+  `type_2` varchar(45) DEFAULT NULL,
+  `tier` int(11) NOT NULL,
+  `gen` int(11) NOT NULL,
+  `raid_cp` int(11) NOT NULL,
+  `min_cp_non_boosted` int(11) NOT NULL,
+  `max_cp_non_boosted` int(11) NOT NULL,
+  `min_cp_boosted` int(11) NOT NULL,
+  `max_cp_boosted` int(11) NOT NULL,
+  `recommended_group_size` int(11) NOT NULL,
+  `shiny_available` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `poké_dex_UNIQUE` (`poké_dex`),
+  UNIQUE KEY `pokémon_UNIQUE` (`pokémon`)
+) 
+
+CREATE TABLE `type_effectiveness_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(45) NOT NULL,
+  `Normal` double NOT NULL,
+  `Water` double NOT NULL,
+  `Fire` double NOT NULL,
+  `Electric` double NOT NULL,
+  `Grass` double NOT NULL,
+  `Ice` double NOT NULL,
+  `Fighting` double NOT NULL,
+  `Poison` double NOT NULL,
+  `Ground` double NOT NULL,
+  `Flying` double NOT NULL,
+  `Psychic` double NOT NULL,
+  `Bug` double NOT NULL,
+  `Rock` double NOT NULL,
+  `Ghost` double NOT NULL,
+  `Dragon` double NOT NULL,
+  `Dark` double NOT NULL,
+  `Steel` double NOT NULL,
+  `Fairy` double NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `type_UNIQUE` (`type`)
+)
+
+CREATE TABLE `type_weather_list` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(45) NOT NULL,
+  `weather` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `type_UNIQUE` (`type`)
+)

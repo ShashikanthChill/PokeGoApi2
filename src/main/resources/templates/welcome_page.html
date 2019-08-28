@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title th:text="#{webapp.title}">title</title>
+        <link rel="stylesheet" href="/css/apidocsstyles.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </head>
+
+    <body class="bg-light">
+        <!-- Navbar start -->
+        <nav class="navbar navbar-expand-md navbar-dark bg-danger static-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img th:src="@{https://fontmeme.com/permalink/190819/3539767f08f10edbdf5f2593deb7103a.png}" src="#" alt="logo" border="0" th:width="165" width="0" th:height="40" height="0">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{#{link.admin}}" href="#" th:text="#{linkname.nav.admin}">link name</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" th:href="@{#{link.about}}" href="#" th:text="#{linkname.nav.about}">link name</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" rel="tooltip" title="toggle" th:href="@{#{link.contact}}" href="#" role="button" aria-expanded="false" aria-controls="collapseExample" th:text="#{linkname.nav.contact}">link name</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="collapse" id="contact-div">
+            <div class="card card-body">
+                Contact us at: <a th:href="@{#{link.mailto}}" href="#" th:text="#{email}">#</a>
+            </div>
+        </div>
+        <!--Navbar end-->
+
+        <!--Jumbotron start-->
+        <div class="jumbotron jumbotron-fluid bg-dark text-light">
+            <div class="container" style="margin-bottom: 25px">
+                <center>
+                    <h1><b th:text="#{webapp.title}">title</b></h1>
+                    <h2 th:text="#{webapp.caption}">caption</h2>
+                </center>
+            </div>
+            <div class="container text-light" style="border-radius: 5px;border: 1px solid white;padding: 10px">
+                <center>
+                    <h5 th:text="#{webapp.description}">description</h5>
+                    <span th:utext="#{webapp.docs}">check docs</span>
+                </center>
+            </div>
+        </div>
+        <!--Jumbotron end-->
+
+        <!--alerts start-->
+        <div class="container alert alert-primary" role="alert" th:utext="#{alert.api-calls-description}">
+            Api calls description
+        </div>
+        <div class="container alert alert-info" role="alert" th:text="#{alert.data-cache-request}">
+            data cache request
+        </div>
+        <div class="container alert alert-warning" role="alert" th:text="#{alert.data-disclaimer}">
+            data disclaimer and changes description
+        </div>
+        <!--alerts end-->
+
+        <!-- documentation start-->
+        <div id="docs" class="container-fluid" style="padding: 50px">
+            <h1 class="display-4" th:text="#{docs.title}">title</h1>
+            <p class="text-muted" th:utext="#{docs.endpoint-url}">enpoint url info</p>
+
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="raidHeading">
+                        <h5 class="mb-0">
+                            <button class="btn btn-outline-primary" data-toggle="collapse" data-target="#raidCollapse" aria-expanded="true" aria-controls="raidCollapse" th:text="#{docs.raids.title}">
+                                title
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="raidCollapse" class="collapse" aria-labelledby="raidbossHeading" data-parent="#accordion">
+                        <div class="card-body">
+                            <!--raid boss row start-->
+                            <div class="row ">
+                                <div class="col-xl-12 ">
+                                    <!--                                        <div class="card ">
+                                                                            <div class="card-body ">
+                                                                                <h5 class="card-title " th:text="#{docs.eggs.title}">title</h5>-->
+                                    <p class="card-text ">
+                                        <span class="badge badge-secondary " th:text="#{docs.raids.url.main}">url main</span> <span th:text="#{docs.raids.url.main.description}">description</span>
+                                    </p>
+                                    <p class="card-text ">
+                                        <span class="badge badge-secondary " th:text="#{docs.raids.url.filter}">url main</span> <span th:text="#{docs.raids.url.filter.description}">description</span>
+                                    </p>
+                                    <p class="card-text">Currently available parameters:</p>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <ul class="list-group">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <span class="badge"><u>param</u></span>
+                                                    <span class="badge"><u>type</u></span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-center" th:each="raidParam:${raidParams}">
+                                                    <b th:text="${raidParam.key}">param key</b>
+                                                    <span class="badge badge-primary badge-pill" th:text="${raidParam.value}">param value</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <p class="card-text ">
+                                        <span class="badge badge-secondary " th:text="#{docs.raids.url.meta}">url main</span> <span th:text="#{docs.raids.url.meta.description}">description</span>
+                                    </p>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#raidbossmodal">
+                                        Details
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="raidbossmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    Sample data:
+                                                    <textarea class="card-text" name="" id="raidbossTextarea" readonly=true></textarea>
+                                                    <br> Sample meta data:
+                                                    <textarea class="card-text" name="" id="raidbossMetaTextarea" readonly=true></textarea>
+                                                    <br>
+                                                    <p>URL to get all raid bosses list =
+                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/raids" target="_blank">".../public-api/raids"</a>
+                                                    </p>
+                                                    <p>URL to get all tier 4 raid bosses list =
+                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/raids/filter?tier=4" target="_blank">".../public-api/raids/filter?tier=4"</a>
+                                                    </p>
+                                                    <p>URL to get raid boss details of 'Dragonite' =
+                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/raids/filter?boss=Dragonite" target="_blank">".../public-api/raids/filter?boss=Dragonite"</a>
+                                                    </p>
+                                                    <p>URL to get raid bosses list whose name starts with 'a | A' =
+                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/raids/filter?boss=a" target="_blank">".../public-api/raids/filter?boss=a"</a>
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                            </div>
+                                                        </div>-->
+                            </div>
+                            <!--raid boss row end-->
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="eggHatchHeading">
+                        <h5 class="mb-0">
+                            <button class="btn btn-outline-primary" data-toggle="collapse" data-target="#eggHatchCollapse" aria-expanded="true" aria-controls="eggHatchCollapse" th:text="#{docs.eggs.title}">
+                                title
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="eggHatchCollapse" class="collapse" aria-labelledby="eggHatchHeading" data-parent="#accordion">
+                        <div class="card-body">
+                            <!--egg hatch row start-->
+                            <div class="row " style="margin: 10px 0px 5px 0px ">
+                                <div class="col-xl-12 ">
+                                    <!--                                    <div class="card ">
+                                                                            <div class="card-body ">
+                                                                                <h5 class="card-title " th:text="#{docs.eggs.title}">title</h5>-->
+                                    <p class="card-text ">
+                                        <span class="badge badge-secondary " th:text="#{docs.eggs.url.main}">url main</span> <span th:text="#{docs.eggs.url.main.description}">description</span>
+                                    </p>
+                                    <p class="card-text ">
+                                        <span class="badge badge-secondary " th:text="#{docs.eggs.url.filter}">url main</span> <span th:text="#{docs.eggs.url.filter.description}">description</span>
+                                    </p>
+                                    <p class="card-text">Currently available parameters:</p>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <ul class="list-group">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <span class="badge"><u>param</u></span>
+                                                    <span class="badge"><u>type</u></span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-center" th:each="eggHatchParam:${eggHatchParams}">
+                                                    <b th:text="${eggHatchParam.key}">param key</b>
+                                                    <span class="badge badge-primary badge-pill" th:text="${eggHatchParam.value}">param value</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <p class="card-text ">
+                                        <span class="badge badge-secondary " th:text="#{docs.eggs.url.meta}">url main</span> <span th:text="#{docs.eggs.url.meta.description}">description</span>
+                                    </p>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eggpoolmodal">
+                                        Details
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="eggpoolmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    Sample data:
+                                                    <textarea class="card-text" name="" id="eggpoolTextarea" readonly=true></textarea>
+                                                    <br> Sample meta data:
+                                                    <textarea class="card-text" name="" id="eggpoolMetaTextarea" readonly=true></textarea>
+                                                    <p>URL to get all egg pools list =
+                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/eggs" target="_blank">".../public-api/eggs"</a>
+                                                    </p>
+                                                    <p>URL to get 5km egg pool list =
+                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/eggs/5" target="_blank">".../public-api/eggs/5"</a>
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                                    </div>
+                                                                </div>-->
+                            </div>
+                            <!--egg hatch row end-->
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="encounterHeading">
+                        <h5 class="mb-0">
+                            <button class="btn btn-outline-primary" data-toggle="collapse" data-target="#encounterCollapse" aria-expanded="true" aria-controls="encounterCollapse" th:text="#{docs.encounters.title}">
+                                title
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="encounterCollapse" class="collapse" aria-labelledby="encounterHeading" data-parent="#accordion">
+                        <div class="card-body">
+                            <!--research breakthrough encounters row start-->
+                            <div class="row " style="margin: 10px 0px 5px 0px ">
+                                <div class="col-xl-12 ">
+                                    <!--                                    <div class="card ">
+                                                                            <div class="card-body ">
+                                                                                <h5 class="card-title " th:text="#{docs.encounters.title}">title</h5>-->
+                                    <p class="card-text ">
+                                        <span class="badge badge-secondary " th:text="#{docs.encounters.url.main}">url main</span> <span th:text="#{docs.encounters.url.main.description}">description</span>
+                                    </p>
+                                    <p class="card-text ">
+                                        <span class="badge badge-secondary " th:text="#{docs.encounters.url.filter}">url main</span> <span th:text="#{docs.encounters.url.filter.description}">description</span>
+                                    </p>
+                                    <p class="card-text">Currently available parameters:</p>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <ul class="list-group">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <span class="badge"><u>param</u></span>
+                                                    <span class="badge"><u>type</u></span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-center" th:each="encounterParam:${encounterParams}">
+                                                    <b th:text="${encounterParam.key}">param key</b>
+                                                    <span class="badge badge-primary badge-pill" th:text="${encounterParam.value}">param value</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <p class="card-text ">
+                                        <span class="badge badge-secondary " th:text="#{docs.encounters.url.meta}">url main</span> <span th:text="#{docs.encounters.url.meta.description}">description</span>
+                                    </p>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#breakthroughmodal">
+                                        Details
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="breakthroughmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    Sample data:
+                                                    <textarea class="card-text" name="" id="breakthroughTextarea" readonly=true></textarea>
+                                                    <br> Sample meta data:
+                                                    <textarea class="card-text" name="" id="breakthroughMetaTextarea" readonly=true></textarea>
+                                                    <p>URL to get all research breakthrough encounters list =
+                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/breakthroughs" target="_blank">".../public-api/breakthroughs"</a>
+                                                    </p>
+                                                    <p>URL to get reasearch breakthrough encounter Pokémon details whose name is 'Lugia' =
+                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/breakthroughs/filter?Pokémon=Lugia" target="_blank">".../public-api/breakthroughs/filter?Pokémon=Lugia"</a>
+                                                    </p>
+
+                                                    <!--card raid boss--><p>URL to get reasearch breakthrough encounter Pokémon details whose name starts with 'a | A' =
+                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/breakthroughs/filter?Pokémon=a" target="_blank">".../public-api/breakthroughs/filter?Pokémon=a"</a>
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                                    </div>
+                                                                </div>-->
+                            </div>
+                            <!--research breakthrough encounters row start-->
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="typeWeatherHeading">
+                        <h5 class="mb-0">
+                            <button class="btn btn-outline-primary" data-toggle="collapse" data-target="#typeWeatherCollapse" aria-expanded="true" aria-controls="typeWeatherCollapse" th:text="#{docs.weather.title}">
+                                title
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="typeWeatherCollapse" class="collapse" aria-labelledby="typeWeatherHeading" data-parent="#accordion">
+                        <div class="card-body">
+                            <!--type weather row start-->
+                            <div class="row " style="margin: 10px 0px 5px 0px ">
+                                <div class="col-xl-12 ">
+                                    <!--                                    <div class="card ">
+                                                                            <div class="card-body ">
+                                                                                <h5 class="card-title " th:text="#{docs.weather.title}">title</h5>-->
+                                    <p class="card-text ">
+                                        <span class="badge badge-secondary " th:text="#{docs.weather.url.main}">url main</span> <span th:text="#{docs.weather.url.main.description}">description</span>
+                                    </p>
+                                    <p class="card-text ">
+                                        <span class="badge badge-secondary " th:text="#{docs.weather.url.sorted}">url main</span> <span th:text="#{docs.weather.url.sorted.description}">description</span>
+                                    </p>
+                                    <p class="card-text ">
+                                        <span class="badge badge-secondary " th:text="#{docs.weather.url.meta}">url main</span> <span th:text="#{docs.weather.url.meta.description}">description</span>
+                                    </p>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#typeweathermodal">
+                                        Details
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="typeweathermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    Sample data:
+                                                    <textarea class="card-text" name="" id="typeweatherTextarea" readonly=true></textarea>
+                                                    <br> Sample data(sorted):
+                                                    <textarea class="card-text" name="" id="typeweatherSortedTextarea" readonly=true></textarea>
+                                                    <br> Sample meta data:
+                                                    <textarea class="card-text" name="" id="typeweatherMetaTextarea" readonly=true></textarea>
+                                                    <p>URL to get all available Pokémons types and related weather details =
+                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/types" target="_blank">".../public-api/types"</a>
+                                                    </p>
+                                                    <p>URL to get all available Pokémons types and related weather details, sorted =
+                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/types/sorted" target="_blank">".../public-api/types/sorted"</a>
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                                    </div>
+                                                                </div>-->
+                            </div>
+                            <!--type weather row end-->
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="typeEffectivenessHeading">
+                        <h5 class="mb-0">
+                            <button class="btn btn-outline-primary" data-toggle="collapse" data-target="#typeEffectivenessCollapse" aria-expanded="true" aria-controls="typeEffectivenessCollapse" th:text="#{docs.effectiveness.title}">
+                                title
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="typeEffectivenessCollapse" class="collapse" aria-labelledby="typeEffectivenessHeading" data-parent="#accordion">
+                        <div class="card-body">
+                            <!--type effectiveness row start-->
+                            <div class="row " style="margin: 10px 0px 5px 0px ">
+                                <div class="col-xl-12 ">
+                                    <!--                                    <div class="card ">
+                                                                            <div class="card-body ">
+                                                                                <h5 class="card-title " th:text="#{docs.effectiveness.title}">title</h5>-->
+                                    <p class="card-text ">
+                                        <span class="badge badge-secondary " th:text="#{docs.effectiveness.url.main}">url main</span> <span th:text="#{docs.effectiveness.url.main.description}">description</span>
+                                    </p>
+                                    <p class="card-text ">
+                                        <span class="badge badge-secondary " th:text="#{docs.effectiveness.url.filter}">url main</span> <span th:text="#{docs.effectiveness.url.filter.description}">description</span>
+                                    </p>
+                                    <p class="card-text">Currently available parameters:</p>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <ul class="list-group">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                    <span class="badge"><u>param</u></span>
+                                                    <span class="badge"><u>type</u></span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-center" th:each="effectivenessParam:${effectivenessParams}">
+                                                    <b th:text="${effectivenessParam.key}">param key</b>
+                                                    <span class="badge badge-primary badge-pill" th:text="${effectivenessParam.value}">param value</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <p class="card-text ">
+                                        <span class="badge badge-secondary " th:text="#{docs.effectiveness.url.meta}">url main</span> <span th:text="#{docs.effectiveness.url.meta.description}">description</span>
+                                    </p>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#typeeffectivenessmodal">
+                                        Details
+                                    </button>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="typeeffectivenessmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    Sample data:
+                                                    <textarea class="card-text" name="" id="typeeffectivenessTextarea" readonly=true></textarea>
+                                                    <br> Sample meta data:
+                                                    <textarea class="card-text" name="" id="typeeffectivenessMetaTextarea" readonly=true></textarea>
+                                                    <p>URL to get all available Pokémons types and effectiveness details =
+                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/effectiveness" target="_blank">".../public-api/effectiveness"</a>
+                                                    </p>
+                                                    <p>URL to get 'Fire' type and effectiveness details =
+                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/effectiveness/Fire" target="_blank">".../public-api/effectiveness/fire"</a>
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                                    </div>
+                                                                </div>-->
+                            </div>
+                            <!--type effectiveness row end-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- documentation end-->
+
+        <!--footer start-->
+        <div class="container-fluid bg-secondary text-light" style="margin-top: 25px;padding: 10px 0px 10px 0px">
+            <center>
+                <h4>More features coming soon to the API.</h4>
+                <div style="padding: 5px 0px 5px 0px">Icons made by <a href="https://www.freepik.com/?__hstc=57440181.389910b901d5629bbb8f0d0601001bc3.1556610230612.1556704541009.1557174460573.5&__hssc=57440181.1.1557174460573&__hsfp=47333315" title="Freepik" class="badge badge-light">Freepik</a>                    from
+                    <a href="https://www.flaticon.com/" title="Flaticon" class="badge badge-light">www.flaticon.com</a> is licensed by <a class="badge badge-light" href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+                <div style="padding: 5px 0px 5px 0px">
+                    Logo font made by <a href="//fontmeme.com/" class="badge badge-light" title="Font Meme">Font
+                        Meme.</a>
+                </div>
+                <br>
+                <p style="padding: 5px 0px 5px 0px" class="text-light" th:text="#{trademark-text}">
+                    trademark text
+                </p>
+            </center>
+        </div>
+        <!--footer end-->
+    </body>
+
+    <footer>
+        <script src="/js/apidocsscripts.js"></script>
+    </footer>
+
+</html>

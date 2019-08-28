@@ -1,0 +1,96 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20-Aug-2019, 11:15:38 PM
+    Author     : TheHumbleFool
+*/
+#raidbossTextarea {
+    width: 100%;
+    min-height: 20rem;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+#raidbossMetaTextarea {
+    width: 100%;
+    min-height: 13rem;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+#eggpoolTextarea {
+    width: 100%;
+    min-height: 13rem;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+#eggpoolMetaTextarea {
+    width: 100%;
+    min-height: 13rem;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+#breakthroughTextarea {
+    width: 100%;
+    min-height: 13rem;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+#breakthroughMetaTextarea {
+    width: 100%;
+    min-height: 5rem;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+#typeweatherTextarea {
+    width: 100%;
+    min-height: 6rem;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+#typeweatherSortedTextarea {
+    width: 100%;
+    min-height: 10rem;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+#typeweatherMetaTextarea {
+    width: 100%;
+    min-height: 13rem;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+#typeeffectivenessTextarea {
+    width: 100%;
+    min-height: 25rem;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+#typeeffectivenessMetaTextarea {
+    width: 100%;
+    min-height: 10rem;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
