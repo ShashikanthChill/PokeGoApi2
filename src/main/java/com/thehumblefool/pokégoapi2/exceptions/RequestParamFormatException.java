@@ -12,18 +12,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  *
  * @author The_Humble_Fool
  */
-
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-public class RequestParamFormatException extends RuntimeException
-{
+public class RequestParamFormatException extends ResourceRelativeException {
 
-    public RequestParamFormatException()
-    {
+    public RequestParamFormatException() {
     }
 
-    public RequestParamFormatException(String string)
-    {
+    public RequestParamFormatException(String string) {
         super(string);
     }
-    
+
 }

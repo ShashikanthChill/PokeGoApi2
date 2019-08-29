@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  *
  * @author The_Humble_Fool
  */
-@ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class ResearchBreakthroughEncounterNotFoundException extends ResourceRelativeException {
+@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+public class InvalidJobInvocationException extends RuntimeException {
 
-    public ResearchBreakthroughEncounterNotFoundException() {
+    public InvalidJobInvocationException() {
     }
 
-    public ResearchBreakthroughEncounterNotFoundException(String string) {
+    public InvalidJobInvocationException(String string) {
         super(string);
     }
 

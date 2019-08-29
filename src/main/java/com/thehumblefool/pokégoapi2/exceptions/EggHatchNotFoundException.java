@@ -12,18 +12,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  *
  * @author The_Humble_Fool
  */
-
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class EggHatchNotFoundException extends RuntimeException
-{
+public class EggHatchNotFoundException extends ResourceRelativeException {
 
-    public EggHatchNotFoundException()
-    {
+    public EggHatchNotFoundException() {
     }
 
-    public EggHatchNotFoundException(String string)
-    {
+    public EggHatchNotFoundException(String string) {
         super(string);
     }
-    
+
 }
