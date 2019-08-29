@@ -36,19 +36,16 @@ public class BatchProcessingController {
 
     private final Job encountersJob;
 
-//    private final JobLauncher jobLauncher;
     private final JobRepository jobRepository;
 
     public BatchProcessingController(
             @Autowired @Qualifier(value = "eggHatchesBatchJob") Job eggHatchesJob,
             @Autowired @Qualifier(value = "raidsBatchJob") Job raidsJob,
             @Autowired @Qualifier(value = "encountersBatchJob") Job encountersJob,
-            //            @Autowired JobLauncher jobLauncher,
             @Autowired JobRepository jobRepository) {
         this.eggHatchesJob = eggHatchesJob;
         this.raidsJob = raidsJob;
         this.encountersJob = encountersJob;
-//        this.jobLauncher = jobLauncher;
         this.jobRepository = jobRepository;
     }
 
@@ -57,14 +54,6 @@ public class BatchProcessingController {
 
         JobParameters jobParameters = new JobParametersBuilder().addString("fileName", fileName).addDate("initTime", new Date(System.currentTimeMillis())).toJobParameters();
 
-//        new Thread(() -> {
-//            try {
-//                jobLauncher.run(eggHatchJob, jobParameters);
-//            } catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException | JobParametersInvalidException ex) {
-//                Logger.getLogger(BatchProcessingController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }).start();
-//        JobExecution execution = jobLauncher.run(eggHatchJob, jobParameters);
         SimpleJobLauncher jl = new SimpleJobLauncher();
         jl.setJobRepository(jobRepository);
         jl.setTaskExecutor(new SimpleAsyncTaskExecutor());
@@ -88,58 +77,5 @@ public class BatchProcessingController {
             default:
                 throw new Exception("Invalid job called");
         }
-//        SimpleJobLauncher jl = new SimpleJobLauncher();
-//        jl.setJobRepository(jobRepository);
-//        jl.setTaskExecutor(new SimpleAsyncTaskExecutor());
-//        jl.afterPropertiesSet();
-//        jl.run(eggHatchesJob, jobParameters);
-//        return "Started Job";
     }
-
-//    @RequestMapping(path = "jobs/raids")
-//    public String raidsBatchJobHandler(@RequestParam(value = "file") String fileName) throws JobExecutionAlreadyRunningException, JobRestartException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException, Exception {
-////
-//        JobParameters jobParameters = new JobParametersBuilder().addString("fileName", fileName).addDate("initTime", new Date(System.currentTimeMillis())).toJobParameters();
-//
-////        new Thread(() -> {
-////            try {
-////                jobLauncher.run(eggHatchJob, jobParameters);
-////            } catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException | JobParametersInvalidException ex) {
-////                Logger.getLogger(BatchProcessingController.class.getName()).log(Level.SEVERE, null, ex);
-////            }
-////        }).start();
-////        JobExecution execution = jobLauncher.run(eggHatchJob, jobParameters);
-//        SimpleJobLauncher jl = new SimpleJobLauncher();
-//
-//        jl.setJobRepository(jobRepository);
-//
-//        jl.setTaskExecutor(
-//                new SimpleAsyncTaskExecutor());
-//        jl.afterPropertiesSet();
-//
-//        jl.run(raidsJob, jobParameters);
-//
-//        return "Started Job";
-//    }
-//
-//    @RequestMapping(path = "jobs/encounters")
-//    public String encountersBatchJobHandler(@RequestParam(value = "file") String fileName) throws JobExecutionAlreadyRunningException, JobRestartException, JobRestartException, JobInstanceAlreadyCompleteException, JobParametersInvalidException, Exception {
-//
-//        JobParameters jobParameters = new JobParametersBuilder().addString("fileName", fileName).addDate("initTime", new Date(System.currentTimeMillis())).toJobParameters();
-//
-////        new Thread(() -> {
-////            try {
-////                jobLauncher.run(eggHatchJob, jobParameters);
-////            } catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException | JobParametersInvalidException ex) {
-////                Logger.getLogger(BatchProcessingController.class.getName()).log(Level.SEVERE, null, ex);
-////            }
-////        }).start();
-////        JobExecution execution = jobLauncher.run(eggHatchJob, jobParameters);
-//        SimpleJobLauncher jl = new SimpleJobLauncher();
-//        jl.setJobRepository(jobRepository);
-//        jl.setTaskExecutor(new SimpleAsyncTaskExecutor());
-//        jl.afterPropertiesSet();
-//        jl.run(encountersJob, jobParameters);
-//        return "Started Job";
-//    }
 }
