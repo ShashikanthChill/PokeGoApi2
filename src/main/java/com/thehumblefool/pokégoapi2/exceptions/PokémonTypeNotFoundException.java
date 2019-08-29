@@ -13,15 +13,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @author The_Humble_Fool
  */
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class PokémonTypeNotFoundException extends RuntimeException
-{
+public class PokémonTypeNotFoundException extends ResourceRelativeException {
 
-    public PokémonTypeNotFoundException()
-    {
+    public PokémonTypeNotFoundException() {
     }
 
-    public PokémonTypeNotFoundException(String string)
-    {
+    public PokémonTypeNotFoundException(String string) {
         super(string);
     }
 
