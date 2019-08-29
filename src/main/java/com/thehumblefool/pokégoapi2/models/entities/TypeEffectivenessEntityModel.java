@@ -26,7 +26,7 @@ public class TypeEffectivenessEntityModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private long id;
 
     @Column(name = "type")
     private String type;
@@ -92,11 +92,11 @@ public class TypeEffectivenessEntityModel implements Serializable {
         this.id = id;
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 

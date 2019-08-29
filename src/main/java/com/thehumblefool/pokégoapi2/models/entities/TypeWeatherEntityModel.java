@@ -27,7 +27,7 @@ public class TypeWeatherEntityModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private long id;
 
     @Column(name = "type")
     private String type;
@@ -38,11 +38,11 @@ public class TypeWeatherEntityModel implements Serializable {
     public TypeWeatherEntityModel() {
     }
 
-    public TypeWeatherEntityModel(Integer id) {
+    public TypeWeatherEntityModel(long id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 

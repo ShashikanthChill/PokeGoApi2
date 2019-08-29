@@ -26,7 +26,7 @@ public class ResearchBreakthroughEncounterEntityModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private long id;
 
     @Column(name = "poké_dex")
     private int pokéDex;
@@ -56,11 +56,11 @@ public class ResearchBreakthroughEncounterEntityModel implements Serializable {
         this.id = id;
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
