@@ -7,7 +7,7 @@ package com.thehumblefool.pokégoapi2.services;
 
 import com.thehumblefool.pokégoapi2.models.dtos.AdminUserDetails;
 import com.thehumblefool.pokégoapi2.models.entities.AdminUserEntityModel;
-import com.thehumblefool.pokégoapi2.repositories.AdminUserRepo;
+import com.thehumblefool.pokégoapi2.repositories.AdminUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,7 +24,7 @@ public class AdminUserDetailsService implements UserDetailsService {
     private final AdminUserRepository repo;
 
     @Autowired
-    public AdminUserDetailsService(AdminUserRepo repo) {
+    public AdminUserDetailsService(AdminUserRepository repo) {
         this.repo = repo;
     }
 
