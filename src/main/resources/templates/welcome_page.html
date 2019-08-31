@@ -87,7 +87,8 @@ and open the template in the editor.
         <!-- documentation start-->
         <div id="docs" class="container-fluid" style="padding: 50px">
             <h1 class="display-4" th:text="#{docs.title}">title</h1>
-            <p class="text-muted" th:utext="#{docs.endpoint-url}">enpoint url info</p>
+            <!--<p class="text-muted" th:utext="#{docs.endpoint-url}">enpoint url info</p>-->
+            <p class="text-muted" th:utext="|All REST end points start with url:&nbsp;<span class='text-dark'>${baseUrl}<b class='text-info'>public-api/..</b></span>|">enpoint url info</p>
 
             <div id="accordion">
                 <div class="card">
@@ -145,16 +146,19 @@ and open the template in the editor.
                                                     <textarea class="card-text" name="" id="raidbossMetaTextarea" readonly=true></textarea>
                                                     <br>
                                                     <p>URL to get all raid bosses list =
-                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/raids" target="_blank">".../public-api/raids"</a>
+                                                        <a href="#" th:href="|${baseUrl}public-api/raids|" target="_blank">".../public-api/raids"</a>
                                                     </p>
                                                     <p>URL to get all tier 4 raid bosses list =
-                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/raids/filter?tier=4" target="_blank">".../public-api/raids/filter?tier=4"</a>
+                                                        <a href="#" th:href="|${baseUrl}public-api/raids/filter?tier=4|" target="_blank">".../public-api/raids/filter?tier=4"</a>
                                                     </p>
                                                     <p>URL to get raid boss details of 'Dragonite' =
-                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/raids/filter?boss=Dragonite" target="_blank">".../public-api/raids/filter?boss=Dragonite"</a>
+                                                        <a href="#" th:href="|${baseUrl}public-api/raids/filter?name=Dragonite|" target="_blank">".../public-api/raids/filter?name=Dragonite"</a>
                                                     </p>
                                                     <p>URL to get raid bosses list whose name starts with 'a | A' =
-                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/raids/filter?boss=a" target="_blank">".../public-api/raids/filter?boss=a"</a>
+                                                        <a href="#" th:href="|${baseUrl}public-api/raids/filter?name=a|" target="_blank">".../public-api/raids/filter?name=a"</a>
+                                                    </p>
+                                                    <p>URL to get shiny raid bosses list =
+                                                        <a th:href="|${baseUrl}public-api/raids/filter?shiny=true|" target="_blank">".../public-api/raids/filter?shiny=true"</a>
                                                     </p>
                                                 </div>
                                                 <div class="modal-footer">
@@ -224,11 +228,14 @@ and open the template in the editor.
                                                     <textarea class="card-text" name="" id="eggpoolTextarea" readonly=true></textarea>
                                                     <br> Sample meta data:
                                                     <textarea class="card-text" name="" id="eggpoolMetaTextarea" readonly=true></textarea>
-                                                    <p>URL to get all egg pools list =
-                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/eggs" target="_blank">".../public-api/eggs"</a>
+                                                    <p>URL to get all egg hatches list =
+                                                        <a href="#" th:href="|${baseUrl}public-api/eggs|" target="_blank">".../public-api/eggs"</a>
                                                     </p>
-                                                    <p>URL to get 5km egg pool list =
-                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/eggs/5" target="_blank">".../public-api/eggs/5"</a>
+                                                    <p>URL to get egg hatches list in 5km distance pool =
+                                                        <a th:href="|${baseUrl}public-api/eggs/filter?distance=5|" target="_blank">".../public-api/eggs/filter?distance=5"</a>
+                                                    </p>
+                                                    <p>URL to get shiny egg hatches list =
+                                                        <a th:href="|${baseUrl}public-api/eggs/filter?shiny=true|" target="_blank">".../public-api/eggs/filter?shiny=true"</a>
                                                     </p>
                                                 </div>
                                                 <div class="modal-footer">
@@ -299,14 +306,16 @@ and open the template in the editor.
                                                     <br> Sample meta data:
                                                     <textarea class="card-text" name="" id="breakthroughMetaTextarea" readonly=true></textarea>
                                                     <p>URL to get all research breakthrough encounters list =
-                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/breakthroughs" target="_blank">".../public-api/breakthroughs"</a>
+                                                        <a th:href="|${baseUrl}public-api/encounters|" target="_blank">".../public-api/encounters"</a>
                                                     </p>
-                                                    <p>URL to get reasearch breakthrough encounter Pokémon details whose name is 'Lugia' =
-                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/breakthroughs/filter?Pokémon=Lugia" target="_blank">".../public-api/breakthroughs/filter?Pokémon=Lugia"</a>
+                                                    <p>URL to get reasearch breakthrough encounter details whose name is 'Lugia' =
+                                                        <a th:href="|${baseUrl}public-api/encounters/filter?name=Lugia|" target="_blank">".../public-api/encounters/filter?name=Lugia"</a>
                                                     </p>
-
-                                                    <!--card raid boss--><p>URL to get reasearch breakthrough encounter Pokémon details whose name starts with 'a | A' =
-                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/breakthroughs/filter?Pokémon=a" target="_blank">".../public-api/breakthroughs/filter?Pokémon=a"</a>
+                                                    <p>URL to get reasearch breakthrough encounter details whose name starts with 'a | A' =
+                                                        <a th:href="|${baseUrl}public-api/encounters/filter?name=a|" target="_blank">".../public-api/encounters/filter?name=a"</a>
+                                                    </p>
+                                                    <p>URL to get shiny reasearch breakthrough encounter list =
+                                                        <a th:href="|${baseUrl}public-api/encounters/filter?shiny=true|" target="_blank">".../public-api/encounters/filter?shiny=true"</a>
                                                     </p>
                                                 </div>
                                                 <div class="modal-footer">
@@ -363,10 +372,10 @@ and open the template in the editor.
                                                     <br> Sample meta data:
                                                     <textarea class="card-text" name="" id="typeweatherMetaTextarea" readonly=true></textarea>
                                                     <p>URL to get all available Pokémons types and related weather details =
-                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/types" target="_blank">".../public-api/types"</a>
+                                                        <a th:href="|${baseUrl}public-api/types|" target="_blank">".../public-api/types"</a>
                                                     </p>
                                                     <p>URL to get all available Pokémons types and related weather details, sorted =
-                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/types/sorted" target="_blank">".../public-api/types/sorted"</a>
+                                                        <a th:href="|${baseUrl}public-api/types/sorted|" target="_blank">".../public-api/types/sorted"</a>
                                                     </p>
                                                 </div>
                                                 <div class="modal-footer">
@@ -437,10 +446,10 @@ and open the template in the editor.
                                                     <br> Sample meta data:
                                                     <textarea class="card-text" name="" id="typeeffectivenessMetaTextarea" readonly=true></textarea>
                                                     <p>URL to get all available Pokémons types and effectiveness details =
-                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/effectiveness" target="_blank">".../public-api/effectiveness"</a>
+                                                        <a th:href="|${baseUrl}public-api/effectiveness|" target="_blank">".../public-api/effectiveness"</a>
                                                     </p>
                                                     <p>URL to get 'Fire' type and effectiveness details =
-                                                        <a href="http://pokegoapi-env-1.t3efypvt5f.ap-south-1.elasticbeanstalk.com/public-api/effectiveness/Fire" target="_blank">".../public-api/effectiveness/fire"</a>
+                                                        <a th:href="|${baseUrl}public-api/effectiveness/filter?type=Fire|" target="_blank">".../public-api/effectiveness/filter?type=Fire"</a>
                                                     </p>
                                                 </div>
                                                 <div class="modal-footer">

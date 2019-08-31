@@ -7,6 +7,7 @@ package com.thehumblefool.pokégoapi2.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MainController {
 
     @RequestMapping(path = "", method = RequestMethod.GET)
-    public String welcomePage(Model model) {
+    public String welcomePage(HttpServletRequest request, Model model) {
 
         Map<String, String> raidParams = new HashMap<>();
         raidParams.put("name", "String");
@@ -43,6 +44,7 @@ public class MainController {
         model.addAttribute("eggHatchParams", eggHatchParams);
         model.addAttribute("encounterParams", encounterParams);
         model.addAttribute("effectivenessParams", effectivenessParams);
+        model.addAttribute("baseUrl", request.getRequestURL().toString());
         return "welcome_page";
     }
 

@@ -68,7 +68,7 @@ public class RaidBossRestController {
                 String name = filterParams.get(filterParam);
                 List<RaidDTOModel> namedRaidBoss = service.loadRaidsByName(name);
                 if (namedRaidBoss == null || namedRaidBoss.isEmpty()) {
-                    throw new PokémonNotFoundException("Raid bosses not found for 'boss'=`" + name + "`");
+                    throw new PokémonNotFoundException("Raid boss(s) not found for 'name'=`" + name + "`");
                 }
                 return namedRaidBoss;
 
@@ -78,7 +78,7 @@ public class RaidBossRestController {
                 String type = filterParams.get(filterParam);
                 List<RaidDTOModel> raidBossesByType = service.loadRaidsByType(type);
                 if (raidBossesByType == null || raidBossesByType.isEmpty()) {
-                    throw new PokémonNotFoundException("Raid bosses not found for 'boss'=`" + type + "`");
+                    throw new PokémonNotFoundException("Raid boss(s) not found for 'type'=`" + type + "`");
                 }
                 return raidBossesByType;
 
@@ -94,7 +94,6 @@ public class RaidBossRestController {
                     }
                     return raidBossesByShiny;
                 }
-                System.out.println("ParseExp arised in FilteredRaidBossesHandler for param: 'shiny', value: " + filterParams.get(filterParam) + ".");
                 throw new RequestParamFormatException("Unsupported value found for 'shiny'=`" + filterParams.get(filterParam) + "`. Please refer to Api docs: http://localhost:8080/PokéApi/");
 
             }
