@@ -24,7 +24,6 @@ public class AmazonS3Service {
 
     @Autowired
     public AmazonS3Service(AmazonS3 s3) {
-        System.out.println("s3 service inited");
         this.s3 = s3;
     }
 
@@ -41,7 +40,6 @@ public class AmazonS3Service {
         try {
             s3.putObject(bucketName, fileName, file);
         } catch (SdkClientException e) {
-            System.out.println(e.toString());
         }
     }
 

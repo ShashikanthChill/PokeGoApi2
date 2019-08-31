@@ -26,7 +26,6 @@ public class TypeWeatherBoostRestController {
 
     @Autowired
     public TypeWeatherBoostRestController(TypeWeatherPublicService service) {
-        System.out.println("typ-wea const");
         this.service = service;
     }
 

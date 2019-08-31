@@ -59,7 +59,6 @@ public class RaidBossRestController {
                     }
                     return tieredRaidBosses;
                 } catch (NumberFormatException nfe) {
-                    System.out.println("Nfe arised in FilteredRaidBossesHandler for param: 'tier', value: " + filterParams.get(filterParam) + ".");
                     throw new RequestParamFormatException("Unsupported value found for 'tier'=`" + filterParams.get(filterParam) + "`. Please refer to Api docs: http://localhost:8080/PokéApi/");
                 }
             }

@@ -26,7 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public SecurityConfig(AdminUserDetailsService userService) {
-        System.out.println("inited security");
         this.userService = userService;
     }
 

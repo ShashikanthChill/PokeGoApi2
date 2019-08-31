@@ -33,7 +33,6 @@ public class ResearchBreakthroughEncountersRestController {
 
     @Autowired
     public ResearchBreakthroughEncountersRestController(ResearchBreakthroughEncountersPublicService service) {
-        System.out.println("rsrch-brk-enc const");
         this.service = service;
     }
 

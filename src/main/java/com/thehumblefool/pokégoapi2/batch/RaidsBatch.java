@@ -66,7 +66,6 @@ public class RaidsBatch {
     }
 
     public void setBatchFilesBucketName(String batchFilesBucketName) {
-        System.out.println("batch files setter called");
         this.batchFilesBucketName = batchFilesBucketName;
     }
 
@@ -119,7 +118,6 @@ public class RaidsBatch {
     @StepScope
     public ItemProcessor<RaidEntityModel, RaidEntityModel> raidItemProcessor() {
         return (t) -> {
-            System.out.println("Processing pokémon: " + t.getPokémon());
             return t;
         };
     }

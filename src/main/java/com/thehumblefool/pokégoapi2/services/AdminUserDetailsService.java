@@ -30,7 +30,6 @@ public class AdminUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("load by username fired");
         AdminUserEntityModel adminUserEntityModel = repo.findByUserName(username);
 
         if (adminUserEntityModel == null) {

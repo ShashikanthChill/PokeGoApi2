@@ -48,7 +48,6 @@ public class JobsExecListener implements JobExecutionListener {
     }
 
     public void setLogFilesBucketName(String logFilesBucketName) {
-        System.out.println("Setter for bucketname called");
         this.logFilesBucketName = logFilesBucketName;
     }
     
