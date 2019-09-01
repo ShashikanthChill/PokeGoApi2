@@ -13,6 +13,7 @@ import com.thehumblefool.pokégoapi2.models.api.RaidsApiModel;
 import com.thehumblefool.pokégoapi2.services.RaidsPublicService;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,7 +48,7 @@ public class RaidBossRestController {
     }
 
     @RequestMapping(path = "filter", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<RaidDTOModel> FilteredRaidBossesHandler(@RequestParam Map<String, String> filterParams) {
+    public List<RaidDTOModel> FilteredRaidBossesHandler(@RequestParam Map<String, String> filterParams, HttpServletRequest request) {
         String filterParam = filterParams.keySet().iterator().next().trim();
         switch (filterParam) {
             case "tier": {
@@ -59,7 +60,7 @@ public class RaidBossRestController {
                     }
                     return tieredRaidBosses;
                 } catch (NumberFormatException nfe) {
-                    throw new RequestParamFormatException("Unsupported value found for 'tier'=`" + filterParams.get(filterParam) + "`. Please refer to Api docs: http://localhost:8080/PokéApi/");
+                    throw new RequestParamFormatException("Unsupported value found for 'tier'=`" + filterParams.get(filterParam) + "`. Please refer to Api docs at http://" + request.getLocalName());
                 }
             }
 
@@ -93,11 +94,11 @@ public class RaidBossRestController {
                     }
                     return raidBossesByShiny;
                 }
-                throw new RequestParamFormatException("Unsupported value found for 'shiny'=`" + filterParams.get(filterParam) + "`. Please refer to Api docs: http://localhost:8080/PokéApi/");
+                throw new RequestParamFormatException("Unsupported value found for 'shiny'=`" + filterParams.get(filterParam) + "`. Please refer to Api docs at http://" + request.getLocalName());
 
             }
             default:
-                throw new InvalidRequestParamException("Invalid request parameter: '" + filterParam + "'. Please refer to Api docs: http://localhost:8080/PokéApi/");
+                throw new InvalidRequestParamException("Invalid request parameter: '" + filterParam + "'. Please refer to Api docs at http://" + request.getLocalName());
         }
     }
 }

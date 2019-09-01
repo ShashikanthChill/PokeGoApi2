@@ -13,6 +13,7 @@ import com.thehumblefool.pokégoapi2.models.dtos.ResearchBreakthroughEncounterDT
 import com.thehumblefool.pokégoapi2.services.ResearchBreakthroughEncountersPublicService;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,7 +48,7 @@ public class ResearchBreakthroughEncountersRestController {
     }
 
     @RequestMapping(path = "filter", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<ResearchBreakthroughEncounterDTOModel> AllFilteredEncountersHandler(@RequestParam Map<String, String> filterParams) {
+    public List<ResearchBreakthroughEncounterDTOModel> AllFilteredEncountersHandler(@RequestParam Map<String, String> filterParams, HttpServletRequest request) {
         String filterParam = filterParams.keySet().iterator().next().trim();
         switch (filterParam) {
             case "name": {
@@ -67,10 +68,10 @@ public class ResearchBreakthroughEncountersRestController {
                     }
                     return shinyEncounters;
                 }
-                throw new RequestParamFormatException("Unsupported value found for 'shiny'=`" + filterParams.get(filterParam) + "`. Please refer to Api docs: http://localhost:8080/PokéApi/");
+                throw new RequestParamFormatException("Unsupported value found for 'shiny'=`" + filterParams.get(filterParam) + "`. Please refer to Api docs at http://" + request.getLocalName());
             }
             default:
-                throw new InvalidRequestParamException("Invalid request parameter: '" + filterParam + "'. Please refer to Api docs: http://localhost:8080/PokéApi/");
+                throw new InvalidRequestParamException("Invalid request parameter: '" + filterParam + "'. Please refer to Api docs at http://" + request.getLocalName());
         }
     }
 }

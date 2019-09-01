@@ -12,6 +12,7 @@ import com.thehumblefool.pokégoapi2.models.dtos.TypeEffectivenessDTOModel;
 import com.thehumblefool.pokégoapi2.services.TypeEffectivenessPublicService;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +47,7 @@ public class TypeEffectivenessRestController {
     }
 
     @RequestMapping(path = "filter", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<TypeEffectivenessDTOModel> SpecificTypeHandler(@RequestParam Map<String, String> filterParams) {
+    public List<TypeEffectivenessDTOModel> SpecificTypeHandler(@RequestParam Map<String, String> filterParams, HttpServletRequest request) {
         String filterParam = filterParams.keySet().iterator().next().trim();
         switch (filterParam) {
             case "type": {
@@ -58,7 +59,7 @@ public class TypeEffectivenessRestController {
                 return specificTypeEffectives;
             }
             default:
-                throw new InvalidRequestParamException("Invalid request parameter: '" + filterParam + "'. Please refer to Api docs: http://localhost:8080/PokéApi/");
+                throw new InvalidRequestParamException("Invalid request parameter: '" + filterParam + "'. Please refer to Api docs at http://" + request.getLocalName());
         }
     }
 }
