@@ -1,4 +1,4 @@
-CREATE TABLE `egg_hatch_list` (
+CREATE TABLE `egg_hatches_list` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `poké_dex` int(11) NOT NULL,
   `pokémon` varchar(45) NOT NULL,
