@@ -60,7 +60,7 @@ public class RaidBossRestController {
                     }
                     return tieredRaidBosses;
                 } catch (NumberFormatException nfe) {
-                    throw new RequestParamFormatException("Unsupported value found for 'tier'=`" + filterParams.get(filterParam) + "`. Please refer to Api docs at http://" + request.getLocalName());
+                    throw new RequestParamFormatException("Unsupported value found for 'tier'=`" + filterParams.get(filterParam) + "`. Please refer to Api docs at: " + request.getHeader("host"));
                 }
             }
 
@@ -94,11 +94,11 @@ public class RaidBossRestController {
                     }
                     return raidBossesByShiny;
                 }
-                throw new RequestParamFormatException("Unsupported value found for 'shiny'=`" + filterParams.get(filterParam) + "`. Please refer to Api docs at http://" + request.getLocalName());
+                throw new RequestParamFormatException("Unsupported value found for 'shiny'=`" + filterParams.get(filterParam) + "`. Please refer to Api docs at: " + request.getHeader("host"));
 
             }
             default:
-                throw new InvalidRequestParamException("Invalid request parameter: '" + filterParam + "'. Please refer to Api docs at http://" + request.getLocalName());
+                throw new InvalidRequestParamException("Invalid request parameter: '" + filterParam + "'. Please refer to Api docs at: " + request.getHeader("host"));
         }
     }
 }

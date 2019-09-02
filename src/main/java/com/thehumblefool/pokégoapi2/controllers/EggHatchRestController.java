@@ -63,7 +63,7 @@ public class EggHatchRestController {
                     }
                     return hatchesByDistance;
                 } catch (NumberFormatException nfe) {
-                    throw new RequestParamFormatException("Unsupported value found for 'distance'=`" + filterParams.get(filterParam) + "`. Please refer to Api docs at http://" + request.getLocalName());
+                    throw new RequestParamFormatException("Unsupported value found for 'distance'=`" + filterParams.get(filterParam) + "`. Please refer to Api docs at: " + request.getHeader("host"));
                 }
             }
 
@@ -76,11 +76,11 @@ public class EggHatchRestController {
                     }
                     return hatchesByShiny;
                 }
-                throw new RequestParamFormatException("Unsupported value found for 'shiny'=`" + filterParams.get(filterParam) + "`. Please refer to Api docs at http://" + request.getLocalName());
+                throw new RequestParamFormatException("Unsupported value found for 'shiny'=`" + filterParams.get(filterParam) + "`. Please refer to Api docs at: " + request.getHeader("host"));
 
             }
             default:
-                throw new InvalidRequestParamException("Invalid request parameter: '" + filterParam + "'. Please refer to Api docs at http://" + request.getLocalName());
+                throw new InvalidRequestParamException("Invalid request parameter: '" + filterParam + "'. Please refer to Api docs at: " + request.getHeader("host"));
         }
 
     }

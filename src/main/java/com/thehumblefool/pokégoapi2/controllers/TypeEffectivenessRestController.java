@@ -59,7 +59,7 @@ public class TypeEffectivenessRestController {
                 return specificTypeEffectives;
             }
             default:
-                throw new InvalidRequestParamException("Invalid request parameter: '" + filterParam + "'. Please refer to Api docs at http://" + request.getLocalName());
+                throw new InvalidRequestParamException("Invalid request parameter: '" + filterParam + "'. Please refer to Api docs at: " + request.getHeader("host"));
         }
     }
 }
